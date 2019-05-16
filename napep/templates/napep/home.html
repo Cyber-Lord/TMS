@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js" integrity="sha256-YCbKJH6u4siPpUlk130udu/JepdKVpXjdEyzje+z1pE=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+  <!--Main layout-->
+    <div class="container-fluid">
+
+      <!--Section: Button icon-->
+      <section>
+
+        <!--Grid row-->
+        <div class="row">
+
+          <!--Grid column-->
+          <div class="col-xl-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card Data-->
+              <div class="row mt-3">
+                <div class="col-md-5 col-5 text-left pl-4">
+                  <a type="button" class="btn-floating btn-lg primary-color ml-4 waves-effect waves-light"><i class="fas fa-user-tie" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="col-md-7 col-7 text-right pr-5">
+                  <h5 class="ml-4 mt-4 mb-2 font-weight-bold">25213</h5>
+                  <p class="font-small grey-text">Owner{{ owners_count|pluralize }}</p>
+                </div>
+              </div>
+              <!--/.Card Data-->
+
+            </div>
+            <!--/.Card-->
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-xl-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card Data-->
+              <div class="row mt-3">
+                <div class="col-md-5 col-5 text-left pl-4">
+                  <a type="button" class="btn-floating btn-lg warning-color ml-4 waves-effect waves-light"><i class="fas fa-user-graduate" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="col-md-7 col-7 text-right pr-5">
+                  <h5 class="ml-4 mt-4 mb-2 font-weight-bold">40081</h5>
+                  <p class="font-small grey-text">Rider{{ riders_count|pluralize }}</p>
+                </div>
+              </div>
+              <!--/.Card Data-->
+
+            </div>
+            <!--/.Card-->
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+                  <!--Grid column-->
+                  {% if request.user.is_student %}
+          <div class="col-xl-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card Data-->
+              <div class="row mt-3">
+                <div class="col-md-5 col-5 text-left pl-4">
+                  <a type="button" class="btn-floating btn-lg warning-color ml-4 waves-effect waves-light"><i class="fas fa-user-graduate" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="col-md-7 col-7 text-right pr-5">
+                  {% for i in p %}
+                  <small class="ml-4 mt-4 mb-2 font-weight-bold">{{  i.term }} term: {{ i.payment_status }}</small>
+                  {% endfor %}
+                  <p class="font-small grey-text">Fee summary ({{ current_session }})</p>
+                </div>
+              </div>
+              <!--/.Card Data-->
+
+            </div>
+            <!--/.Card-->
+
+          </div>
+          <!--Grid column-->
+          {% else %}
+
+          <!--Grid column-->
+          <div class="col-xl-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card Data-->
+              <div class="row mt-3">
+                <div class="col-md-5 col-5 text-left pl-4">
+                  <a type="button" class="btn-floating btn-lg warning-color ml-4 waves-effect waves-light"><i class="fas fa-user-graduate" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="col-md-7 col-7 text-right pr-5">
+                  <h5 class="ml-4 mt-4 mb-2 font-weight-bold">36801</h5>
+                  <p class="font-small grey-text">Tricycle{{ tricycle_count|pluralize }}</p>
+                </div>
+              </div>
+              <!--/.Card Data-->
+
+            </div>
+            <!--/.Card-->
+
+          </div>
+          <!--Grid
+          {% endif %}
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-xl-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card Data-->
+              <div class="row mt-3">
+                <div class="col-md-5 col-5 text-left pl-4">
+                  <a type="button" class="btn-floating btn-lg red accent-2 ml-4 waves-effect waves-light"><i class="fas fa-book-open" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="col-md-7 col-7 text-right pr-5">
+                  <h5 class="ml-4 mt-4 mb-2 font-weight-bold">3</h5>
+                  <p class="font-small grey-text">Brand{{ brand_count|pluralize }}</p>
+                </div>
+              </div>
+              <!--/.Card Data-->
+
+            </div>
+            <!--/.Card-->
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </section>
+      <!--/Section: Button icon-->
+
+      <div style="height: 5px"></div>
+
+      <!-- Section: data tables -->
+      <section class="section">
+
+        <div class="row">
+          <div class="col-md-12 col-lg-4 ">
+
+            <div class="card mb-4">
+                    <!--Card-->
+              <div class="card testimonial-card">
+                <!--Background color-->
+                <div class="card-up blue-gradient"></div>
+                <!--Avatar-->
+                <div class="avatar mx-auto white">
+                  <img src="{% static 'img/img_avatar.png'%}" class="rounded-circle img-fluid">
+                </div>
+                <div class="card-body">
+                  <!--Name-->
+                  <h4 class="font-weight-bold mb-4">KAMAL ABDULLAHI</h4>
+                  <small>(BOARD OF INTERNAL REVENUE)</small>
+                  <hr>
+                  <small>
+        	         info@tms.com
+              	  </small>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+           {% if request.user.is_superuser %}
+          <div class="col-lg-8 col-md-12">
+            <div class="card mb-4">
+              <div class="card-body">
+             	<canvas id="myChart" width="400" height="185"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['2017', '2018', '2019'],
+        datasets: [{
+            label: '# REVENUE GRAPH BY YEAR',
+            data: [550000, 570890, 467578],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+              </div>
+            </div>
+          </div>
+          {% elif request.user.is_student %}
+           <div class="col-lg-8 col-md-12">
+          <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action active">
+            Class Subjects ({{ student.in_class }})
+          </button>
+          {% for subject in subjects %}
+          <button type="button" class="list-group-item list-group-item-action">
+            {{ subject.name }}
+          </button>
+          {% empty %}
+           <button type="button" class="list-group-item list-group-item-action">
+            No subject added in your class
+          </button>
+          {% endfor %}
+        </div>
+        </div>
+        {% elif request.user.is_teacher %}
+        <div class="col-lg-8 col-md-12">
+          <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action active">
+             Your subjects:
+          </button>
+          {% for subject in subjects %}
+          ({{ subject.clss }}):
+          {% for each in subject.subjects.all %}
+          <button type="button" class="list-group-item list-group-item-action">
+            {{ each }}
+          </button>
+          {% endfor %}
+          {% empty %}
+           <button type="button" class="list-group-item list-group-item-action">
+            No subject is allocated to you !
+          </button>
+          {% endfor %}
+        </div>
+        </div>
+        {% elif request.user.is_parent %}
+        <div class="col-lg-8 col-md-12">
+          <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action active">
+            Ward(s) Information
+          </button>
+          {% for ward in wards %}
+          <button type="button" class="list-group-item list-group-item-action">
+            {{ ward.student }} ({{ ward.student.in_class }})
+          </button>
+          {% empty %}
+           <button type="button" class="list-group-item list-group-item-action">
+            Wards not available
+          </button>
+          {% endfor %}
+        </div>
+        </div>
+            {% endif %}
+        </div>
+
+      </section>
+      <!-- /.Section: data tables -->
+  <!--Main layout-->
+  {% endblock %}
+
+  {% block script %}
+  	<script src="{% static 'js/sms/chart.js' %}"></script>
+  {% endblock script %}

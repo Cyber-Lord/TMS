@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Brands {% endblock title %}
+{% block main %}
+   <div class="container-fluid">
+   <!-- Heading -->
+   <div class="card mb-4 wow fadeIn">
+      <!--Card content-->
+      <div class="card-body d-sm-flex justify-content-between">
+         <h6 class="mb-2 mb-sm-0 pt-1">
+            <a href="{% url 'home_page' %}">Home Page</a>
+            <span>/</span>
+            <span></span>
+         </h6>
+      </div>
+   </div>
+   <!-- Heading -->
+   <!-- Editable table -->
+    {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{ message|safe }}
+          </div>
+        {% endfor %}
+      {% endif %}
+   <div class="card">
+      <h6 class="mdb-color darken-3 card-header text-center white-text text-uppercase py-2">brands</h6>
+      <div class="container">
+         <div class="row">
+
+               <div class="col-md-5">
+                  <a href="{% url 'add_brand' %}" class="btn btn-info">Add brand</a>
+               </div>
+
+            <div class="col-md-3"><small></small></div>
+         </div>
+      </div>
+      <div style="margin-bottom: 190px" class="card-body">
+         <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+               <tr>
+                  <th width="5" class="text-center">#</th>
+                  <th class="text-center">Brand Name</th>
+               </tr>
+                {% for brand in brands %}
+                  <tr>
+                    <td class="pt-3-half text-center" contenteditable="false">
+                        <a href="">{{ forloop.counter }}</a>
+                     </td>
+                     <td class="pt-3-half text-center" name="" contenteditable="false">
+                        {{ brand.brand_name }}
+                     </td>
+                     </tr>
+                  {% empty %}
+                  <tr>
+                     <td>No data available</td>
+                  </tr>
+                  {% endfor %}
+            </table>
+            <small>Number of brands: {{ brands|length}}</small>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock main %}
